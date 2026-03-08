@@ -60,7 +60,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = useCallback(
     async (registerData: RegisterData) => {
-      const { data } = await client.post<AuthResponse>('/auth/register', registerData);
+      const payload = {
+        email: registerData.email,
+        password: registerData.password,
+        name: `${registerData.firstName} ${registerData.lastName}`.trim(),
+      };
+      const { data } = await client.post<AuthResponse>('/auth/register', payload);
       persistAuth(data.user, data.token);
     },
     [persistAuth],

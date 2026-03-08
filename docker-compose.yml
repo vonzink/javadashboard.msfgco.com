@@ -49,7 +49,7 @@ services:
       dockerfile: Dockerfile
     container_name: msfg-java-frontend
     environment:
-      VITE_API_URL: http://localhost:8083
+      VITE_API_URL: http://backend:8083
     ports:
       - "3007:3007"
     depends_on:
